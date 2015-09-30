@@ -163,6 +163,13 @@ class TestRobot < Minitest::Test
     assert_equal(30, r.position.y)
   end
 
+  def test_first_sharp_test_case
+    r = new_robot(pos: Position.new(0, 0), direction: 'S')
+    r.execute_sequence!('fflff')
+    assert_equal(2, r.position.x)
+    assert_equal(2, r.position.y)
+  end
+
   def new_robot(pos: Position.new(4, 4), direction: 'N', world: create_world)
     Robot.new(pos, direction, world)
   end

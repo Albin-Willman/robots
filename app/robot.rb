@@ -1,3 +1,4 @@
+require "./app/sequence_translator"
 class Robot
   DIRECTIONS = ['N', 'E', 'S', 'W'].freeze
   attr_accessor :position, :direction
@@ -6,6 +7,11 @@ class Robot
     @position  = position
     @direction = direction
     @world     = world
+  end
+
+  def execute_sequence!(sequence)
+    commands = SequenceTranslator.call(sequence)
+    commands.each { |c| self.public_send(c) }
   end
 
   def turn_left!
