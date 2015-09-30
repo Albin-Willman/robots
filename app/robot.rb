@@ -15,32 +15,27 @@ class Robot
   end
 
   def forward!
-    case direction
-    when 'N'
-      @position = Position.new(position.x, position.y - 1)
-    when 'S'
-      @position = Position.new(position.x, position.y + 1)
-    when 'W'
-      @position = Position.new(position.x - 1, position.y)
-    when 'E'
-      @position = Position.new(position.x + 1, position.y)
-    end
+    move!(1)
   end
 
   def backup!
-    case direction
-    when 'N'
-      @position = Position.new(position.x, position.y + 1)
-    when 'S'
-      @position = Position.new(position.x, position.y - 1)
-    when 'W'
-      @position = Position.new(position.x + 1, position.y)
-    when 'E'
-      @position = Position.new(position.x - 1, position.y)
-    end
+    move!(-1)
   end
 
   private
+
+  def move!(directionality)
+    case direction
+    when 'N'
+      @position = Position.new(position.x, position.y - directionality)
+    when 'S'
+      @position = Position.new(position.x, position.y + directionality)
+    when 'W'
+      @position = Position.new(position.x - directionality, position.y)
+    when 'E'
+      @position = Position.new(position.x + directionality, position.y)
+    end
+  end
 
   def turn!(change)
     @direction = DIRECTIONS[(DIRECTIONS.index(direction) + change) % DIRECTIONS.length]
