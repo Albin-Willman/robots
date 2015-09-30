@@ -7,10 +7,16 @@ class Robot
   end
 
   def turn_left!
-    @direction = DIRECTIONS[DIRECTIONS.index(direction) - 1]
+    turn!(-1)
   end
 
   def turn_right!
-    @direction = DIRECTIONS[(DIRECTIONS.index(direction) + 1) % DIRECTIONS.length]
+    turn!(1)
+  end
+
+  private
+
+  def turn!(change)
+    @direction = DIRECTIONS[(DIRECTIONS.index(direction) + change) % DIRECTIONS.length]
   end
 end
