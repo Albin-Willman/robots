@@ -5,4 +5,8 @@ class World
     @height = height
     @obstacles = obstacles
   end
+
+  def allowed_position?(position)
+    true
+  end
 end
