@@ -23,6 +23,36 @@ class TestWorld < Minitest::Test
     assert_equal(true, create_world.allowed_position?(position))
   end
 
+  def test_allow_valid_position_upper_corner
+    position = Position.new(0, 0)
+    assert_equal(true, create_world.allowed_position?(position))
+  end
+
+  def test_allow_valid_position_lower_corner
+    position = Position.new(100, 100)
+    assert_equal(true, create_world.allowed_position?(position))
+  end
+
+  def test_allow_position_left_of_world
+    position = Position.new(-1, 30)
+    assert_equal(false, create_world.allowed_position?(position))
+  end
+
+  def test_allow_position_left_of_world
+    position = Position.new(-1, 30)
+    assert_equal(false, create_world.allowed_position?(position))
+  end
+
+  def test_allow_position_above_world
+    position = Position.new(30, -1)
+    assert_equal(false, create_world.allowed_position?(position))
+  end
+
+  def test_allow_position_below_world
+    position = Position.new(30, 101)
+    assert_equal(false, create_world.allowed_position?(position))
+  end
+
   def create_world(width: 100, height: 100, obstacles: [])
     World.new(width, height, obstacles)
   end
