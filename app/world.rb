@@ -9,13 +9,16 @@ class World
   end
 
   def allowed_position?(position)
-    return false unless x_range.cover?(position.x)
-    return false unless y_range.cover?(position.y)
+    return false unless is_in_world?(position)
     return false if is_blocked?(position)
     true
   end
 
   private
+
+  def is_in_world?(position)
+    x_range.cover?(position.x) && y_range.cover?(position.y)
+  end
 
   def is_blocked?(position)
     obstacles.each do |obstacle|
