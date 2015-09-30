@@ -27,6 +27,19 @@ class Robot
     end
   end
 
+  def backup!
+    case direction
+    when 'N'
+      @position = Position.new(position.x, position.y + 1)
+    when 'S'
+      @position = Position.new(position.x, position.y - 1)
+    when 'W'
+      @position = Position.new(position.x + 1, position.y)
+    when 'E'
+      @position = Position.new(position.x - 1, position.y)
+    end
+  end
+
   private
 
   def turn!(change)

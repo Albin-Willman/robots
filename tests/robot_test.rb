@@ -76,6 +76,35 @@ class TestRobot < Minitest::Test
     assert_equal(4, r.position.y)
   end
 
+
+  def test_move_backup_north
+    r = new_robot
+    r.backup!
+    assert_equal(4, r.position.x)
+    assert_equal(5, r.position.y)
+  end
+
+  def test_move_backup_south
+    r = new_robot(direction: 'S')
+    r.backup!
+    assert_equal(4, r.position.x)
+    assert_equal(3, r.position.y)
+  end
+
+  def test_move_backup_west
+    r = new_robot(direction: 'W')
+    r.backup!
+    assert_equal(5, r.position.x)
+    assert_equal(4, r.position.y)
+  end
+
+  def test_move_backup_east
+    r = new_robot(direction: 'E')
+    r.backup!
+    assert_equal(3, r.position.x)
+    assert_equal(4, r.position.y)
+  end
+
   def new_robot(pos: Position.new(4, 4), direction: 'N')
     Robot.new(pos, direction)
   end
