@@ -53,6 +53,21 @@ class TestWorld < Minitest::Test
     assert_equal(false, create_world.allowed_position?(position))
   end
 
+  def test_allow_position_blocked_by_obstacle
+    position = Position.new(30, 30)
+    assert_equal(false, create_world(obstacles: [position]).allowed_position?(position))
+  end
+
+  def test_allow_position_blocked_by_third_obstacle
+    position = Position.new(30, 30)
+    obstacles = [
+      Position.new(31, 30),
+      Position.new(31, 32),
+      Position.new(30, 30)
+    ]
+    assert_equal(false, create_world(obstacles: obstacles).allowed_position?(position))
+  end
+
   def create_world(width: 100, height: 100, obstacles: [])
     World.new(width, height, obstacles)
   end
