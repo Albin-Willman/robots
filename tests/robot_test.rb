@@ -28,7 +28,26 @@ class TestRobot < Minitest::Test
     r = new_robot(direction: 'S')
     r.turn_left!
     assert_equal('E', r.direction)
+  end 
+
+  def test_turn_right_from_north
+    r = new_robot
+    r.turn_right!
+    assert_equal('E', r.direction)
   end
+
+  def test_turn_right_from_west
+    r = new_robot(direction: 'W')
+    r.turn_right!
+    assert_equal('N', r.direction)
+  end
+
+  def test_turn_right_from_south
+    r = new_robot(direction: 'S')
+    r.turn_right!
+    assert_equal('W', r.direction)
+  end
+
 
   def new_robot(pos: Position.new(1, 0), direction: 'N')
     Robot.new(pos, direction)
