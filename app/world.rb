@@ -1,17 +1,20 @@
+require "./app/walls"
 class World
-  attr_reader :x_range, :y_range, :width, :height, :obstacles 
-  def initialize(width, height, obstacles = [])
+  attr_reader :x_range, :y_range, :width, :height, :obstacles, :poistion_warper
+  def initialize(width, height, obstacles = [], poistion_warper = Walls.new)
     @x_range   = 0..width
     @y_range   = 0..height
     @width     = width
     @height    = height
     @obstacles = obstacles
+    @poistion_warper = poistion_warper
   end
 
   def allowed_position?(position)
+    position = position
     return false unless is_in_world?(position)
     return false if is_blocked?(position)
-    true
+    position
   end
 
   private
