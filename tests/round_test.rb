@@ -16,28 +16,28 @@ class TestRound < Minitest::Test
     assert_equal(pos, Round.new.warp(pos, world))
   end
 
-  def test_wrap_left
+  def test_warp_left
     pos      = Position.new(-1, 2)
     expected = Position.new(100, 2)
     world = World.new(100, 100)
     assert_equal(expected, Round.new.warp(pos, world))
   end
 
-  def test_wrap_right
+  def test_warp_right
     pos      = Position.new(101, 2)
     expected = Position.new(0, 2)
     world = World.new(100, 100)
     assert_equal(expected, Round.new.warp(pos, world))
   end
 
-  def test_wrap_up
+  def test_warp_up
     pos      = Position.new(2, -1)
     expected = Position.new(2, 100)
     world = World.new(100, 100)
     assert_equal(expected, Round.new.warp(pos, world))
   end
 
-  def test_wrap_down
+  def test_warp_down
     pos      = Position.new(2, 101)
     expected = Position.new(2, 0)
     world = World.new(100, 100)

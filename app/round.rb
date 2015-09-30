@@ -1,23 +1,15 @@
 class Round
   def warp(position, world)
-    position = check_x(position, world)
-    position = check_y(position, world)
+    position.x = check_axis(position.x, world.width)
+    position.y = check_axis(position.y, world.height)
     position
   end
 
   private
 
-  def check_x(position, world)
-    return position if world.x_range.cover?(position.x)
-    width = world.width + 1
-    position.x = (width + position.x) % width
-    position
-  end
-
-  def check_y(position, world)
-    return position if world.y_range.cover?(position.y)
-    height = world.height + 1
-    position.y = (height + position.y) % height
-    position
+  def check_axis(value, limit)
+    return value if (0..limit).cover?(value)
+    limit = limit + 1
+    (limit + value) % limit
   end
 end
