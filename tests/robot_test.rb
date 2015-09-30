@@ -2,6 +2,8 @@ require "minitest/autorun"
 require "./app/robot"
 require "./app/position"
 require "./app/world"
+require "./app/round"
+require "./app/walls"
 
 class TestRobot < Minitest::Test
   def test_basic_position
@@ -187,11 +189,19 @@ class TestRobot < Minitest::Test
     assert_equal(49, r.position.y)
   end
 
+  def test_round_world_case
+    world     = create_world(warp: Round.new)
+    r = new_robot(pos: Position.new(1, 1), direction: 'N', world: world)
+    r.execute_sequence!('fflff')
+    assert_equal(100, r.position.x)
+    assert_equal(100, r.position.y)
+  end
+
   def new_robot(pos: Position.new(4, 4), direction: 'N', world: create_world)
     Robot.new(pos, direction, world)
   end
 
-  def create_world(width: 100, height: 100, obstacles: [Position.new(30, 30)])
-    World.new(width, height, obstacles)
+  def create_world(width: 100, height: 100, obstacles: [Position.new(30, 30)], warp: Walls.new)
+    World.new(width, height, obstacles, warp)
   end
 end

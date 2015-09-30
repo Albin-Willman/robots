@@ -20,17 +20,17 @@ class TestWorld < Minitest::Test
 
   def test_allow_valid_position
     position = Position.new(30, 30)
-    assert_equal(true, create_world.allowed_position?(position))
+    assert_equal(position, create_world.allowed_position?(position))
   end
 
   def test_allow_valid_position_upper_corner
     position = Position.new(0, 0)
-    assert_equal(true, create_world.allowed_position?(position))
+    assert_equal(position, create_world.allowed_position?(position))
   end
 
   def test_allow_valid_position_lower_corner
     position = Position.new(100, 100)
-    assert_equal(true, create_world.allowed_position?(position))
+    assert_equal(position, create_world.allowed_position?(position))
   end
 
   def test_allow_position_left_of_world

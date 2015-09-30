@@ -11,7 +11,7 @@ class World
   end
 
   def allowed_position?(position)
-    position = position
+    position = poistion_warper.warp(position, self)
     return false unless is_in_world?(position)
     return false if is_blocked?(position)
     position

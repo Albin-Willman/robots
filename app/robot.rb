@@ -35,8 +35,9 @@ class Robot
   private
 
   def move!(directionality)
-    new_position = next_position(directionality)
-    return false unless world.allowed_position?(new_position)
+    proposed_position = next_position(directionality)
+    new_position = world.allowed_position?(proposed_position)
+    return false unless new_position
     @position = new_position
   end
 
