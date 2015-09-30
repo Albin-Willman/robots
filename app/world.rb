@@ -1,4 +1,8 @@
 class World
-  def initialize(limits = HardLimits.new)
+  attr_reader :width, :height, :obstacles 
+  def initialize(width, height, obstacles = [])
+    @width = width 
+    @height = height
+    @obstacles = obstacles
   end
 end
