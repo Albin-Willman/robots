@@ -17,16 +17,16 @@ class World
     position
   end
 
-  private
-
-  def is_in_world?(position)
-    x_range.cover?(position.x) && y_range.cover?(position.y)
-  end
-
   def is_blocked?(position)
     obstacles.each do |obstacle|
       return true if position.equal?(obstacle)
     end
     false
+  end
+
+  private
+
+  def is_in_world?(position)
+    x_range.cover?(position.x) && y_range.cover?(position.y)
   end
 end
