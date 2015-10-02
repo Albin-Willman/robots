@@ -12,8 +12,9 @@ class Robot
   def execute_sequence!(sequence)
     commands = SequenceTranslator.call(sequence)
     commands.each do |c|
-      return unless self.public_send(c)
+      return false unless self.public_send(c)
     end
+    true
   end
 
   def turn_left!

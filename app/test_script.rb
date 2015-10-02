@@ -9,15 +9,21 @@ obstacles = [
   Position.new(5, 3)
 ]
 world = World.new(10, 10, obstacles)
-pos = Position.new(1, 1)
+pos = Position.new(5, 5)
 robot = Robot.new(pos, 'E', world)
 
-[
-  'f', 'r', 'f', 'f', 'f', 'f', 'l'
-].each do |c|
-  robot.execute_sequence!(c)
+options = ['f', 'b', 'r', 'l']
+puts ''
+puts '---START---'
+puts ''
+no_crash = true
+while(no_crash) do
+  c = options.sample
+  puts ''
+  puts "-----#{c}-----"
+  puts ''
+  no_crash = robot.execute_sequence!(c)
   Printer.new.call(robot)
-  puts ''
-  puts '------------'
-  puts ''
 end
+
+puts '---STOP---'
